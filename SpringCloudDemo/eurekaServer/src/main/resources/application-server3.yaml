@@ -1,0 +1,17 @@
+server:
+  port: 9003
+
+spring:
+  application:
+    # 设置应用名称
+    name: eureka-server3
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    # Eureka Server的服务URL地址
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

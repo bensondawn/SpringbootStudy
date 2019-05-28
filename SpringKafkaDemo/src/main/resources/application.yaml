@@ -1,0 +1,18 @@
+kafka:
+  consumer:
+    servers: spark-master:9092,spark-slave2:9092,spark-slave1:9092
+    enable-auto-commit: true
+    session-timeout: 18000
+    auto-commit-interval: 60000
+    auto-offset-reset: latest
+    group-id: myGroup1
+    concurrency: 1
+    max-poll-records: 30
+    poll-timeout: 1500
+  producer:
+    servers: spark-master:9092,spark-slave2:9092,spark-slave1:9092
+    retries: 0
+    batch-size: 16384
+    linger: 0
+    buffer-memory: 40960000
+    max-request: 5000000

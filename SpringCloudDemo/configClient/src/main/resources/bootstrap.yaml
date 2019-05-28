@@ -1,0 +1,21 @@
+
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      # 服务配置中心设置的路径下的分支目录
+      label: master
+      name: config-client
+      profile: dev
+      uri: http://localhost:9300
+      # 配置从git获取配置
+      #discovery:
+        #enabled: true
+        #service-id: config-server
+eureka:
+  client:
+    # 是否将自己注册到Eureka Server上，默认为true
+    register-with-eureka: false
+    # 是否从Eureka Server上获取注册信息，默认为true
+    fetch-registry: false

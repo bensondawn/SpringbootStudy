@@ -1,0 +1,16 @@
+lj:
+  redis:
+    list-host:
+      host: 172.16.0.130
+      port: 6379
+    timeout: 43200
+    jedis:
+      pool:
+        # 控制一个pool可分配最大jedis实例数
+        max-total: 50
+        # 控制一个pool最多有多少个状态为空闲的jedis实例
+        max-idle: 5
+        # 控制一个pool最少有多少个状态为空闲的jedis实例
+        min-idle:
+        # 当池内没有返回对象时，最大等待时间，单位毫秒
+        max-wait: 10000

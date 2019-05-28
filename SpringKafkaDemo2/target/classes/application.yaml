@@ -1,0 +1,30 @@
+spring:
+ kafka:
+   bootstrap-servers: spark-master:9092,spark-slave0:9092,spark-slave1:9092
+   producer:
+     # 失败是否重试，设置会有可能产生重复数据(默认0)。
+     # retries: 0
+     # 每次批量发送消息的数量，字节(默认16384)。
+     # batch-size: 16384
+     # 缓存容量，字节(默认33554432)。
+     # buffer-memory: 33554432
+     # 指定消息key和消息体的编解码方式
+     key-serializer: org.apache.kafka.common.serialization.StringSerializer
+     value-serializer: org.apache.kafka.common.serialization.StringSerializer
+   consumer:
+     # 用来标识这个消费者所属的消费者组。
+     group-id: myGroup1
+     # 多少毫秒向kafka提交一次offset(默认5000毫秒)。
+     # auto-commit-interval: 100
+     # 当卡夫卡没有最初的偏移量，或者当前的偏移量在服务器上不再存在时，自动将偏移量重置为最新偏移量。[latest, earliest, none]，(默认latest)。
+     # auto-offset-reset: earliest
+     # 消费者的offset将会在后台定期提交(默认true)。
+     # enable-auto-commit: true
+     # 在单个呼叫到poll()中返回的最大记录数(默认500)。
+     # max-poll-records: 30
+     # 指定消息key和消息体的编解码方式。
+     key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+     value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+   # 指定listener 容器中的线程数，用于提高并发量
+   listener:
+     concurrency: 1

@@ -1,0 +1,13 @@
+server:
+  port: 9090
+
+lj:
+  datasource:
+    cta:
+      url: jdbc:mysql://172.16.1.33:3306/GBIAP?tinyInt1isBit=false&characterEncoding=GBK
+      username: root
+      password: gsmrlab
+    common-config:
+      url: jdbc:mysql://172.16.1.33:3306/GBIAP_common_config_wh?tinyInt1isBit=false&characterEncoding=GBK
+      username: root
+      password: gsmrlab
