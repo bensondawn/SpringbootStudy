@@ -4,14 +4,16 @@ server:
 spring:
   application:
     # 设置应用名称
-    name: eureka-server1
+    name: eureka-server
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: eureka-server1
+    # prefer-ip-address: true
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    # 单点服务注册中心配置以下两个配成false，高可用集群配置成true。
+    registerWithEureka: true
+    fetchRegistry: true
     # Eureka Server的服务URL地址
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://eureka-server2:9002/eureka/,http://eureka-server3:9003/eureka/
