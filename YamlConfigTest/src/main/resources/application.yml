@@ -1,0 +1,19 @@
+lj:
+  redis: #自定义的属性和值
+    simple-prop: simplePropValue
+    array-props: 1,2,3,4,5
+    list-prop1:
+      - name: abc
+        value: abcValue
+      - name: efg
+        value: efgValue
+      - name: efg
+        value: efgValue
+    list-prop2:
+      - config2Value1
+      - config2Vavlue2
+    map-props:
+      key1: value1
+      key2: value2
+server:
+  port: 9090

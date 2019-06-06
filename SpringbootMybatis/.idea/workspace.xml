@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5fae2649-6767-4e90-8cef-96be2887ee10" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../SpringCloudDemo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringCloudDemo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringbootMybatisGenerator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringbootMybatisGenerator/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../springbootES/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springbootES/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../springbootES/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springbootES/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../springbootES/src/main/java/com/benson/elasticsearch/EsDemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springbootES/src/main/java/com/benson/elasticsearch/EsDemoApplication.java" afterDir="false" />
@@ -20,7 +21,7 @@
     <session id="569984632">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.opened" value="3" />
@@ -179,7 +180,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1912" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -346,7 +347,7 @@
     <option name="totallyTimeSpent" value="18794000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19189766" />

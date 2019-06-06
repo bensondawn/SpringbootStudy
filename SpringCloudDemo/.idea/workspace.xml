@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89f1bfd9-38b9-4c36-b9db-3705636d83d8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../springbootES/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configClient/configClient.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eurekaClient/src/main/resources/application-client1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/eurekaClient/src/main/resources/application-client1.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eurekaClient/target/classes/application-client1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/eurekaClient/target/classes/application-client1.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eurekaServer/src/main/resources/application-server1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/eurekaServer/src/main/resources/application-server1.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eurekaServer/src/main/resources/application-server2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/eurekaServer/src/main/resources/application-server2.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eurekaServer/src/main/resources/application-server3.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/eurekaServer/src/main/resources/application-server3.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eurekaServer/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/eurekaServer/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eurekaServer/target/classes/application-server1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/eurekaServer/target/classes/application-server1.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eurekaServer/target/classes/application-server2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/eurekaServer/target/classes/application-server2.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eurekaServer/target/classes/application-server3.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/eurekaServer/target/classes/application-server3.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eurekaServer/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/eurekaServer/target/classes/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eurekaZuul/eurekaZuul.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springbootES/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springbootES/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springbootES/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springbootES/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -123,6 +111,7 @@
     <session id="-1123264108">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -212,7 +201,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/eurekaServer/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
+            <state relative-caret-position="380">
               <caret line="20" column="32" lean-forward="true" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
             </state>
           </provider>
@@ -593,7 +582,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1716418" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -611,7 +599,7 @@
       <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="bottom" id="Find" order="8" />
-      <window_info anchor="bottom" id="Run" order="9" visible="true" weight="0.4679696" />
+      <window_info anchor="bottom" id="Run" order="9" weight="0.4679696" />
       <window_info anchor="bottom" id="Debug" order="10" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
@@ -944,7 +932,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/eurekaServer/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
+        <state relative-caret-position="380">
           <caret line="20" column="32" lean-forward="true" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
         </state>
       </provider>
