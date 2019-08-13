@@ -1,6 +1,0 @@
-server:
-  port: 9005
-spring:
-  redis:
-    host: 172.16.1.130
-    port: 6379
