@@ -8,7 +8,7 @@
     <result column="userSex" jdbcType="VARCHAR" property="usersex" />
   </resultMap>
 
-  <select id="getUsers" resultType="User">
+  <select id="getUsers" resultType="BaseResultMap">
         SELECT * FROM user
   </select>
 </mapper>
