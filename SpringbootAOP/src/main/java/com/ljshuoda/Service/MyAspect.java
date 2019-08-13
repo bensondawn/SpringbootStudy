@@ -2,11 +2,13 @@ package com.ljshuoda.Service;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * 这是个切面，也就是面向约定编程里的拦截器。
  */
 @Aspect
+@Configuration
 public class MyAspect {
 
     // 切点
@@ -38,9 +40,9 @@ public class MyAspect {
 
     @Around("pointCut()")
     public void around(ProceedingJoinPoint jp) throws Throwable {
-//        System.out.println("around before......");
-//        jp.proceed();
-//        System.out.println("around after......");
+        System.out.println("around before......");
+        jp.proceed();
+        System.out.println("around after......");
     }
 
 }
