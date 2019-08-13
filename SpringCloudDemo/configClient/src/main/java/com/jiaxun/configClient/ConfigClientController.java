@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ConfigClientController {
 
-    @Value("${info}")
+    @Value("${zhangbin}")
     private String info;
 
     /**

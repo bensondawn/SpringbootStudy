@@ -1,27 +1,39 @@
 server:
-  port: 9300
+  port: 9600
 
 spring:
   application:
     name: config-server
   profiles:
-    active: native # 加载本地配置
-  cloud:
-    config:
-      # 配置从git还是本地加载配置，二者选其一(git和native)
-      server:
-        #git:
-          # git仓库地址
-          #uri:
-          # git仓库下的相对目录，可以配置多个，用“，”分割。
-          #search-paths:
-          # git用户名
-          #username:
-          # git密码
-          #password:
-        native:
-          # 不指定路径的话，默认搜索 resources 目录，斜杠要用Linux的目录的方式，不能用反斜杠，否则找不到路径。
-          search-locations: D:/IdeaPro/SpringCloudDemo/configServer/src/main/resources/
+    active: jdbc
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/iot
+    username: root
+    password: 111111
+spring.cloud.config.server.jdbc.sql: SELECT config_key,config_value FROM config_center where APPLICATION=? and PROFILE=? and LABEL=?
+
+#spring:
+#  application:
+#    name: config-server
+#  profiles:
+#    active: native # 加载本地配置
+#  cloud:
+#    config:
+#      # 配置从git还是本地加载配置，二者选其一(git和native)
+#      server:
+#        #git:
+#          # git仓库地址
+#          #uri:
+#          # git仓库下的相对目录，可以配置多个，用“，”分割。
+#          #search-paths:
+#          # git用户名
+#          #username:
+#          # git密码
+#          #password:
+#        native:
+#          # 不指定路径的话，默认搜索 resources 目录，斜杠要用Linux的目录的方式，不能用反斜杠，否则找不到路径。
+#          search-locations: E:/IdeaPro/SpringCloudDemo/configServer/src/main/resources/
 
 eureka:
   instance:
@@ -34,6 +46,8 @@ eureka:
     # 如果该值设置太小了，则instance则很可能因为临时的网络抖动而被摘除掉。
     # 该值至少应该大于 leaseRenewalIntervalInSeconds
     lease-expiration-duration-in-seconds: 45
+    # 通过ip和端口注册
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
   client:
     serviceUrl:
-      defaultZone: http://localhost:9001/eureka/,http://localhost:9002/eureka/,http://localhost:9003/eureka/
+      defaultZone: http://localhost:9100/eureka/,http://localhost:9200/eureka/,http://localhost:9300/eureka/
