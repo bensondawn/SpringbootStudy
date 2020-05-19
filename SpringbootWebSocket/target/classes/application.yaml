@@ -1,5 +1,0 @@
-server:
-  port: 9000
-
-logging:
-  file: nuwa.log

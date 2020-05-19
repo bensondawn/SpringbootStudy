@@ -1,5 +1,5 @@
 server:
-  port: 9002
+  port: 9200
 
 spring:
   application:
@@ -16,4 +16,4 @@ eureka:
     fetchRegistry: true
     # Eureka Server的服务URL地址
     serviceUrl:
-      defaultZone: http://eureka-server1:9001/eureka/,http://eureka-server3:9003/eureka/
+      defaultZone: http://eureka-server1:9100/eureka/,http://eureka-server3:9300/eureka/

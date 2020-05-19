@@ -18,11 +18,21 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+<<<<<<< HEAD
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+=======
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+            <version>${spring-boot-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-netflix-core</artifactId>
+            <version>1.4.4.RELEASE</version>
+>>>>>>> cd8e289f0af768993beff8f757ac05866e5582c2
         </dependency>
     </dependencies>
 

@@ -1,7 +1,11 @@
 server:
+<<<<<<< HEAD
   port: 9030
   servlet:
     context-path: /demo/v1/client
+=======
+  port: 9103
+>>>>>>> cd8e289f0af768993beff8f757ac05866e5582c2
 
 spring:
   application:
@@ -21,4 +25,4 @@ eureka:
     lease-expiration-duration-in-seconds: 10
   client:
     serviceUrl:
-      defaultZone: http://localhost:9001/eureka/,http://localhost:9002/eureka/,http://localhost:9003/eureka/
+      defaultZone: http://localhost:9100/eureka/,http://localhost:9200/eureka/,http://localhost:9300/eureka/
