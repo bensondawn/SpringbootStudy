@@ -1,11 +1,7 @@
 server:
-<<<<<<< HEAD
   port: 8080
   servlet:
     context-path: /demo/v1/gateway
-=======
-  port: 9000
->>>>>>> cd8e289f0af768993beff8f757ac05866e5582c2
 
 spring:
   application:

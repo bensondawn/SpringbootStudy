@@ -1,11 +1,7 @@
 server:
-<<<<<<< HEAD
   port: 9030
   servlet:
     context-path: /demo/v1/client
-=======
-  port: 9103
->>>>>>> cd8e289f0af768993beff8f757ac05866e5582c2
 
 spring:
   application:
