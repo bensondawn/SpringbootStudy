@@ -1,5 +1,7 @@
 server:
   port: 8080
+  servlet:
+    context-path: /demo/v1/gateway
 
 spring:
   application:
@@ -20,6 +22,8 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:9001/eureka/,http://localhost:9002/eureka/,http://localhost:9003/eureka/
 
+# 双星花(**)的意思是匹配0个或多个路径。
+# 单星花(*)的意思是匹配0个或多个字符。
 zuul:
   routes:
     api-ribbon:

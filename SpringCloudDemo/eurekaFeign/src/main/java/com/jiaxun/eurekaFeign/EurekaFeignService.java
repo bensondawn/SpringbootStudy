@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @FeignClient(value = "eureka-client", fallback = EurekaFeignServiceFailure.class) // 调用的服务的名称
 public interface EurekaFeignService {
 
-    @RequestMapping("/info")
+    @RequestMapping("/demo/v1/client/info")
     String getInfo();
 }

@@ -1,5 +1,7 @@
 server:
   port: 9030
+  servlet:
+    context-path: /demo/v1/client
 
 spring:
   application:

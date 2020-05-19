@@ -16,7 +16,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-            <version>${spring-boot-version}</version>
             <exclusions>
                 <!-- exclude the old version servlet-api 需要做排包处理，否则抛出异常-->
                 <exclusion>
