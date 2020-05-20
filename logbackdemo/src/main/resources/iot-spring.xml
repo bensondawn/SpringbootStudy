@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoder 默认配置为PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+
+        <!-- 过滤掉 TRACE 和 DEBUG 级别的日志-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+
+    <!-- 控制LogbackDemo下类的打印，使用root的level和appender -->
+    <!--<logger name="LogbackDemo"/>-->
+
+    <!-- LogbackDemo下类的打印，使用root的appender打印INFO及以上级别日志 -->
+    <!--<logger name="LogbackDemo" level="INFO"/>-->
+
+    <!-- 控制LogbackDemo下类的打印，使用console打印warn及以上级别日志 -->
+    <!-- 设置addtivity是因为这里已经指定了appender，如果再向上传递就会被root下的appender再次打印 -->
+    <!--<logger name="LogbackDemo" level="WARN" addtivity="false">-->
+        <!--<appender-ref ref="console"/>-->
+    <!--</logger>-->
+
+    <springProfile name="dev">
+        <logger name="LogbackDemo" level="DEBUG"/>
+    </springProfile>
+
+    <springProfile name="pro">
+        <logger name="LogbackDemo" level="INFO"/>
+    </springProfile>
+
+    <!--logger和root是父子关系，logger包下的程序运行时，先经过logger的配置，-->
+    <!--然后logger把过滤后的日志交给root(logger的level和root的level没关系)，-->
+    <!--root再交给下面的apperder处理。过滤顺序:logger root appender，如果logger -->
+    <!--没有配置level，将继承root的level，而appender采用filter的方式过滤。-->
+
+    <!--root可以限制springboot的打印级别-->
+    <springProfile name="pro">
+        <root level="ERROR">
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+
+</configuration>

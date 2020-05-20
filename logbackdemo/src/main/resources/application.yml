@@ -1,0 +1,8 @@
+server:
+  port: 8181
+logging:
+  config: classpath:iot-spring.xml
+
+spring:
+  profiles:
+    active: pro #pro
