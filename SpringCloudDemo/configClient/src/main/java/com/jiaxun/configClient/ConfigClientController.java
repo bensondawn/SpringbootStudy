@@ -5,11 +5,13 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RefreshScope
 @RestController
 public class ConfigClientController {
 
-    @Value("${zhangbin}")
+    @Value("${spring.datasource.druid.password}")
     private String info;
 
     /**
@@ -18,7 +20,8 @@ public class ConfigClientController {
      * @return 返回  配置中的info信息
      */
     @RequestMapping("/info")
-    public String info() {
-        return info;
+    public String info(HttpServletRequest request) {
+        String message = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getServletPath() + ";info:" + info;
+        return message;
     }
 }

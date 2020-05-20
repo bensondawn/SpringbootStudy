@@ -10,9 +10,18 @@ public class EurekaFeignController {
     @Autowired
     private EurekaFeignService eurekaFeignService;
 
-    @RequestMapping("/feignInfo")
-    public String feignInfo() {
-        String message = eurekaFeignService.getInfo();
+    @Autowired
+    private ConfigClientFeignService configClientFeignService;
+
+    @RequestMapping("/feign-client-info")
+    public String feignClientInfo() {
+        String message = eurekaFeignService.getClientInfo();
+        return "获取到的信息:" + message;
+    }
+
+    @RequestMapping("/feign-config-info")
+    public String feignConfigInfo() {
+        String message = configClientFeignService.getConfigInfo();
         return "获取到的信息:" + message;
     }
 }

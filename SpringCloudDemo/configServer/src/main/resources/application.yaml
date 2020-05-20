@@ -7,10 +7,11 @@ spring:
   profiles:
     active: jdbc
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/iot
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/iot?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
     password: 111111
+    type: com.alibaba.druid.pool.DruidDataSource
 spring.cloud.config.server.jdbc.sql: SELECT config_key,config_value FROM config_center where APPLICATION=? and PROFILE=? and LABEL=?
 
 #spring:

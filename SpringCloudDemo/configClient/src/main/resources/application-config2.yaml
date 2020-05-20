@@ -1,0 +1,8 @@
+server:
+  port: 9602
+  servlet:
+    context-path: /demo/v1/config-client
+
+spring:
+  application:
+    name: config-client

@@ -1,11 +1,9 @@
 spring:
-  application:
-    name: config-client
   cloud:
     config:
       # 服务配置中心设置的路径下的分支目录
-      name: config-client
-      profile: host
+      name: iot
+      profile: dev
       label: master
       # uri: http://localhost:9600
       # 同uri效果一样。

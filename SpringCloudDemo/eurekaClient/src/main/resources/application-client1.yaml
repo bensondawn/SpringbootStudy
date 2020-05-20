@@ -1,7 +1,7 @@
 server:
   port: 9010
   servlet:
-    context-path: /demo/v1/client
+    context-path: /demo/v1/eureka-client
 
 spring:
   application:
