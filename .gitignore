@@ -1,10 +1,12 @@
 BeanDemo/.idea/
 configClient/.idea/
 logbackdemo/.idea/
+logbackdemo/target/
 SpringAOP/.idea/
 SpringbootAnnotation/.idea/
 SpringbootAOP/.idea/
 SpringBootElasticsearch/.idea/
+SpringBootElasticsearch/target/
 springbootES/.idea/
 SpringbootJdbcDemo/.idea/
 SpringbootJedisDemo/.idea/
@@ -13,6 +15,13 @@ SpringbootMybatisGenerator/.idea/
 SpringbootRedisDemo/.idea/
 SpringbootWebSocket/.idea/
 SpringCloudDemo/.idea/
+SpringCloudDemo/configClient/
+SpringCloudDemo/configServer/
+SpringCloudDemo/eurekaClient/
+SpringCloudDemo/eurekaFeign/
+SpringCloudDemo/eurekaRibbon/
+SpringCloudDemo/eurekaServer/
+SpringCloudDemo/eurekaZuul/
 SpringKafkaDemo/.idea/
 SpringKafkaDemo2/.idea/
 websocket/.idea/
