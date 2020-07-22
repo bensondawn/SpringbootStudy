@@ -1,5 +1,6 @@
 package com.jiaxun.Controller;
 
+import com.jiaxun.annotation.MyFirstAnnotation;
 import com.jiaxun.model.UserModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -21,18 +23,15 @@ public class AnnotationCtrl {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @PostMapping("/body")
-    public String requestPermissions(@RequestBody @Valid @NotNull(message = "111111111111111") String permissions) {
-//        if (results.hasErrors())
-//            return results.getFieldError().getDefaultMessage();
-//        else
-//            logger.info("permissions:" + permissions);
-        return "success";
+    @MyFirstAnnotation("吃饭")
+    @RequestMapping(value = "/say")
+    public String requestPermissions() {
+        System.out.println("吃饭");
+        return "hello spring boot";
     }
 
     @PostMapping("/alarm")
     public Map<String, Object> createOrders(@RequestBody @Valid UserModel userModel, BindingResult results) {
-        requestPermissions(null);
         Map<String, Object> errMap = new HashMap<>();
         List<ObjectError> oes = results.getAllErrors();
         for (ObjectError oe : oes) {

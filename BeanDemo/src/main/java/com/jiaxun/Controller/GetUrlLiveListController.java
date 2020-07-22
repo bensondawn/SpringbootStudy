@@ -6,6 +6,7 @@ import com.jiaxun.util.XmlJsonUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
+import org.json.XML;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class GetUrlLiveListController {
     Logger logger = LoggerFactory.getLogger(GetUrlLiveListController.class);
 
     @PostMapping("/list")
-    public Object getLiveList(@RequestBody String request) {
+    public JSONObject getLiveList(@RequestBody String request) {
 
         JSONObject jsonObject = JSON.parseObject(request);
         String url = jsonObject.get("url").toString();
@@ -73,28 +74,14 @@ public class GetUrlLiveListController {
                 e2.printStackTrace();
             }
         }
-        // 不好用
-//        Document document = DocumentHelper.parseText(result.toString());
-//        boolean isExist = XmlJsonUtils.isExistNote(document.asXML(),"/contacts/contactsList");
-//        if (isExist){
-//            Object xmlObject = null;
-//            xmlObject = XsteamUtil.toBean(Contacts.class, result.toString());
-//            return JSONObject.toJSON(xmlObject);
-//        } else
-//            return null;
-
-//        Object xmlObject = null;
-//        xmlObject = XsteamUtil.toBean(Contacts.class, result.toString());
-//        return JSONObject.toJSON(xmlObject);
-
         Document document = null;
         try {
             document = DocumentHelper.parseText(result.toString());
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        String strJson = XmlJsonUtils.xml2json(document.asXML());
-        jsonObject = JSON.parseObject(strJson);
+        org.json.JSONObject xmlJsonObject = XML.toJSONObject(document.asXML());
+        jsonObject = JSON.parseObject(xmlJsonObject.toString());
         return jsonObject;
     }
 }

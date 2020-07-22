@@ -1,15 +1,12 @@
 package com.jiaxun.util;
 
-import net.sf.json.JSONSerializer;
-import net.sf.json.xml.XMLSerializer;
+import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.json.JSONObject;
-import org.json.XML;
 
 import java.io.ByteArrayInputStream;
 import java.io.UnsupportedEncodingException;
