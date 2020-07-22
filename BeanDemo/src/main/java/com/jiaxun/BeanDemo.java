@@ -5,7 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {
         "com.jiaxun.annotation",
+        "com.jiaxun.aspect",
         "com.jiaxun.Controller",
+        "com.jiaxun.model",
         "com.jiaxun.service"
 })
 public class BeanDemo {

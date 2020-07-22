@@ -23,11 +23,11 @@ public class AnnotationCtrl {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @MyFirstAnnotation("吃饭")
-    @RequestMapping(value = "/say")
-    public String requestPermissions() {
-        System.out.println("吃饭");
-        return "hello spring boot";
+    @MyFirstAnnotation()
+    @RequestMapping("/add1")
+    public String addData1() {
+        System.out.println("=====add data1=====");
+        return "success";
     }
 
     @PostMapping("/alarm")
