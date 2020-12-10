@@ -2,6 +2,7 @@ package com.jiaxun.Controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.jiaxun.Utils.MD5Utils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
@@ -9,20 +10,30 @@ import org.json.JSONException;
 import org.json.XML;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.math.BigInteger;
+import java.net.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@Validated
 @RestController
 @RequestMapping("/live")
 public class GetUrlLiveListController {
 
     Logger logger = LoggerFactory.getLogger(GetUrlLiveListController.class);
+
+    String [] ipAddress = {"172.16.1.168","172.16.1.163","172.16.1.119"};
+
+    int port = 9000;
+
+    private static final String MACHINE_COUNT = "3";
 
     @PostMapping("/list")
     public JSONObject getLiveList(@RequestBody String request) {
@@ -88,5 +99,72 @@ public class GetUrlLiveListController {
         }
         jsonObject = JSON.parseObject(xmlJsonObject.toString());
         return jsonObject;
+    }
+
+    @PostMapping("/get-alarm-picture-machine")
+    public List<StringBuilder> GetAlarmPictureMachine(@RequestBody String[] picPaths){
+
+        List<StringBuilder> pathList = new ArrayList<>();
+        for (String picPath : picPaths){
+            StringBuilder picAddr = new StringBuilder();
+            BigInteger bigInteger = MD5Utils.MD5_32bit3(picPath);
+            BigInteger mCount = new BigInteger(MACHINE_COUNT);
+            int mNum = bigInteger.mod(mCount).intValue();
+            String ip = ipAddress[mNum];
+            picAddr.append(ip).append(":").append(port).append("/").append(picPath);
+            System.out.println(picAddr);
+            pathList.add(picAddr);
+        }
+        return pathList;
+    }
+
+    @GetMapping("/get-photo")
+    public void getPhoto(@RequestParam("photoAddr") String photoAddr, HttpServletResponse response){
+
+        photoAddr = photoAddr.replace("\"","");
+        try {
+            URL url = new URL(photoAddr);
+            BufferedInputStream bis = new BufferedInputStream(url.openStream());
+
+            byte[] bytes = new byte[1024];
+            OutputStream os = response.getOutputStream();
+            int len;
+            while ((len = bis.read(bytes)) > 0){
+                os.write(bytes,0,len);
+            }
+            bis.close();
+            os.flush();
+            os.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @PostMapping("/get-photo1")
+    public void getPhoto1(@RequestBody String photoAddr, HttpServletResponse response){
+
+        photoAddr = photoAddr.replace("\"","");
+        System.out.println(photoAddr);
+
+        try {
+            URL url = new URL(photoAddr);
+            String fileType = photoAddr.substring(photoAddr.lastIndexOf("."));
+            System.out.println(fileType);
+
+            InputStream is = url.openStream();
+
+            byte[] bytes = new byte[1024];
+
+            OutputStream os = response.getOutputStream();
+            int len;
+            while ((len = is.read(bytes)) > 0){
+                os.write(bytes,0,len);
+            }
+            is.close();
+            os.flush();
+            os.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

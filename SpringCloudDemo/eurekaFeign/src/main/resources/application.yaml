@@ -20,7 +20,7 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
   client:
     serviceUrl:
-      defaultZone: http://localhost:9100/eureka/,http://localhost:9200/eureka/,http://localhost:9300/eureka/
+      defaultZone: http://admin:admin6@localhost:9100/eureka/,http://admin:admin6@localhost:9200/eureka/,http://admin:admin6@localhost:9300/eureka/
 # feign的配置
 feign:
   hystrix:

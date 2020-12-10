@@ -1,5 +1,0 @@
-server:
-  port: 9601
-  servlet:
-    context-path: /demo/v1/config-client
-

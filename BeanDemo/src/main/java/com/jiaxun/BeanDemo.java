@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         "com.jiaxun.service"
 })
 public class BeanDemo {
-
     public static void main(String[] args) {
         SpringApplication.run(BeanDemo.class, args);
     }

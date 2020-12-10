@@ -22,6 +22,7 @@ public class ConfigClientController {
     @RequestMapping("/info")
     public String info(HttpServletRequest request) {
         String message = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getServletPath() + ";info:" + info;
+        System.out.println("***********" + message + "***********");
         return message;
     }
 }

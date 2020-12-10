@@ -20,8 +20,9 @@ public class EurekaFeignController {
     }
 
     @RequestMapping("/feign-config-info")
-    public String feignConfigInfo() {
+    public void feignConfigInfo() {
         String message = configClientFeignService.getConfigInfo();
-        return "获取到的信息:" + message;
+        System.out.println("***********" + message + "***********");
+//        return "获取到的信息:" + message;
     }
 }

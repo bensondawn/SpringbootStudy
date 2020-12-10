@@ -17,7 +17,7 @@ public class AuthFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return 0; // filter执行顺序，通过数字指定 ,优先级为0，数字越大，优先级越低
+        return 1; // filter执行顺序，通过数字指定 ,优先级为0，数字越大，优先级越低
     }
 
     @Override

@@ -5,15 +5,25 @@ spring:
   application:
     # 设置应用名称
     name: eureka-server
+  session:
+    store-type: none
+  profiles:
+    active: server1
+  security:
+    user:
+      name: admin
+      password: admin6
 
 eureka:
   instance:
     hostname: eureka-server1
+    # 以IP地址注册到服务中心
     # prefer-ip-address: true
   client:
-    # 单点服务注册中心配置以下两个配成false，高可用集群配置成true
+    # 向注册中心注册自己
     registerWithEureka: true
+    # 是否检索服务
     fetchRegistry: true
     # Eureka Server的服务URL地址
     serviceUrl:
-      defaultZone: http://eureka-server2:9200/eureka/,http://eureka-server3:9300/eureka/
+      defaultZone: http://admin:admin6@eureka-server2:9200/eureka/,http://admin:admin6@eureka-server3:9300/eureka/
