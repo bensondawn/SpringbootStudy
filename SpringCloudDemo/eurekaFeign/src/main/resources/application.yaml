@@ -25,3 +25,25 @@ eureka:
 feign:
   hystrix:
     enabled: true
+
+seata:
+  enabled: true
+  application-id: eureka-discovery-feign
+  tx-service-group: my_test_tx_group
+  enable-auto-data-source-proxy: true
+  use-jdk-proxy: false
+  service:
+    vgroup-mapping:
+      my_test_tx_group: default
+  #  grouplist:
+  #    default: 127.0.0.1:8091 # 仅注册中心为file时使用
+    enable-degrade: false
+    disable-global-transaction: false
+  config:
+    type: file
+  registry:
+    type: eureka
+    eureka:
+      weight: 1
+      service-url: http://admin:admin6@localhost:9100/eureka/,http://admin:admin6@localhost:9200/eureka/,http://admin:admin6@localhost:9300/eureka/
+
