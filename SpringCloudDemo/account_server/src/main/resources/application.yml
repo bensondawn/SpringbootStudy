@@ -1,0 +1,117 @@
+server:
+  port: 8181
+spring:
+  application:
+    name: account-server
+#  cloud:
+#    alibaba:
+#      seata:
+#        tx-service-group: fsp_tx_group
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    password: 111111
+    username: root
+    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  typeAliasesPackage: io.seata.sample.entity
+
+eureka:
+    instance:
+        hostname: localhost
+        prefer-ip-address: true
+    client:
+        serviceUrl:
+            defaultZone: http://admin:admin6@localhost:9100/eureka/,http://admin:admin6@localhost:9200/eureka/,http://admin:admin6@localhost:9300/eureka/
+
+logging:
+  level:
+    root: info
+
+# feign开启熔断
+feign:
+  hystrix:
+    enabled: true #默认为false，如果为false,则使用ribbon的超时设置和重试机制，否则使用feign的相关设置
+  client:
+    config:
+      default:
+        #连接到目标的时间，此处会收到注册中心启动中的影响。设置为3秒钟，如果注册中心有明显的不在线，基本是毫秒级熔断拒绝
+        connectTimeout: 3000
+        #获取目标连接后执行的最长时间，设置为32秒，即服务最长时
+        readTimeout: 6000
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          #是否开始超时熔断，如果为false，则熔断机制只在服务不可用时开启（spring-cloud-starter-openfeign中的HystrixCommandProperties默认为true）
+          enabled: true
+          isolation:
+            thread:
+            #设置超时熔断时间（spring-cloud-starter-openfeign中的HystrixCommandProperties默认为1000毫秒）
+            timeoutInMilliseconds: 10000
+
+# -----------seata--------------
+seata:
+  enabled: true
+  application-id: account-server #服务名
+  tx-service-group: default # default是自定义的事务分组名称
+  enable-auto-data-source-proxy: true # 启用自动数据源代理
+  use-jdk-proxy: false
+#  client:
+#    rm:
+#      async-commit-buffer-limit: 1000
+#      report-retry-count: 5
+#      table-meta-check-enable: false
+#      report-success-enable: false
+#      saga-branch-register-enable: false
+#      lock:
+#        retry-interval: 10
+#        retry-times: 30
+#        retry-policy-branch-rollback-on-conflict: true
+#    tm:
+#      commit-retry-count: 5
+#      rollback-retry-count: 5
+#    undo:
+#      data-validation: true
+#      log-serialization: jackson
+#      log-table: undo_log
+#    log:
+#      exceptionRate: 100
+  service:
+    vgroup-mapping:
+      default: seata-server # default是自定义的事务分组名称，fsp_tx是tc注册到注册中心的服务名称
+#      grouplist:
+#          default: 127.0.0.1:8091 # 	仅注册中心为file时使用
+    enable-degrade: false # 是否启用降级
+    disable-global-transaction: false # 是否禁用全局事务
+#  transport:
+#    shutdown:
+#      wait: 3
+#    thread-factory:
+#      boss-thread-prefix: NettyBoss
+#      worker-thread-prefix: NettyServerNIOWorker
+#      server-executor-thread-prefix: NettyServerBizHandler
+#      share-boss-worker: false
+#      client-selector-thread-prefix: NettyClientSelector
+#      client-selector-thread-size: 1
+#      client-worker-thread-prefix: NettyClientWorkerThread
+#      worker-thread-size: default
+#      boss-thread-size: 1
+#    type: TCP
+#    server: NIO
+#    heartbeat: true
+#    serialization: seata
+#    compressor: none
+#    enable-client-batch-send-request: true
+  config:
+    type: file # 配置中心为file模式
+  registry:
+    type: eureka # 注册中心为eureka
+    eureka:
+      weight: 1
+      service-url: http://admin:admin6@localhost:9100/eureka/,http://admin:admin6@localhost:9200/eureka/,http://admin:admin6@localhost:9300/eureka/
+# -----------seata--------------

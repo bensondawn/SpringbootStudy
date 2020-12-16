@@ -10,7 +10,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * 编译通过。
  */
 @SpringBootApplication
-@EnableEurekaClient
+@EnableEurekaClient // 启动Eureka服务发现，该注解只适用于Eureka作为注册中心。
 public class EurekaClientApplication {
     public static void main(String[] args) {
         SpringApplication.run(EurekaClientApplication.class,args);
