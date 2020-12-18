@@ -61,8 +61,8 @@ seata:
     application-id: order-server #服务名
     tx-service-group: default # default是自定义的事务分组名称
     enable-auto-data-source-proxy: true # 启用自动数据源代理
-    data-source-proxy-mode: AT
-    use-jdk-proxy: false
+#    data-source-proxy-mode: AT
+#    use-jdk-proxy: false
 #    excludes-for-auto-proxying:
 #    client:
 #        rm:
