@@ -1,2 +1,7 @@
 server:
   port: 9090
+#  tomcat:
+#    max-connections: 10000  #默认值
+#    accept-count: 100 #默认值
+#    max-threads: 200  #默认值
+#    uri-encoding: UTF-8 #默认值

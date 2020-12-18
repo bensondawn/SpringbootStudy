@@ -27,6 +27,11 @@ public class AnnotationCtrl {
     @RequestMapping("/add1")
     public String addData1() {
         System.out.println("=====add data1=====");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "success";
     }
 

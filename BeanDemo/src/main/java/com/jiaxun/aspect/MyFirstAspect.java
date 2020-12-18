@@ -18,18 +18,15 @@ public class MyFirstAspect {
 
     @Around("addAdvice()")
     public Object Interceptor(ProceedingJoinPoint joinPoint){
-        System.out.println("====Interceptor====");
         System.out.println("通知开始");
-        Object retmsg=null;
+        Object result = null;
         try {
-            retmsg = joinPoint.proceed();
-            System.err.println("++++++++"+retmsg);
+            result = joinPoint.proceed();
         } catch (Throwable e) {
             e.printStackTrace();
         }
-        System.out.println("通知之结束 +retmsg+" + retmsg);
+        System.out.println("通知结束" + result);
 
-        Object result = null;
         Object[] args = joinPoint.getArgs();
         if (args != null && args.length > 0) {
             String deviceId = (String) args[0];
@@ -37,11 +34,12 @@ public class MyFirstAspect {
                 return "no anthorization";
             }
         }
-        try {
-            result = joinPoint.proceed();
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
+
+//        try {
+//            result = joinPoint.proceed();
+//        } catch (Throwable e) {
+//            e.printStackTrace();
+//        }
         return result;
     }
 
@@ -50,11 +48,11 @@ public class MyFirstAspect {
         MethodSignature sign =  (MethodSignature)joinPoint.getSignature();
         Method method = sign.getMethod();
         MyFirstAnnotation annotation = method.getAnnotation(MyFirstAnnotation.class);
-        System.out.println("打印：" + annotation.value() + " 开始前");
+        System.out.println("打印：" + annotation.value() + " before方法执行");
     }
 
     @After("addAdvice()")
     public void after() {
-        System.out.println("after方法执行后");
+        System.out.println("打印：" + "after方法执行");
     }
 }
