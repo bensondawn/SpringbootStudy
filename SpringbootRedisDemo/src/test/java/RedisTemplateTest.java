@@ -11,8 +11,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication(scanBasePackages = {
-        "com.ljshuoda.Service",
-        "com.ljshuoda.Config"
+        "com.ljshuoda"
 })
 class BootConfig {
 
@@ -50,3 +49,4 @@ public class RedisTemplateTest {
         System.out.println("Last element:"+redisService.getElement("listkey1",0));
     }
 }
+
