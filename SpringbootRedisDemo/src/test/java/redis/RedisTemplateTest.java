@@ -10,7 +10,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashMap;
-import java.util.Set;
 
 @SpringBootApplication(scanBasePackages = {
         "com.ljshuoda"
@@ -34,7 +33,7 @@ public class RedisTemplateTest {
         map.put("name","zhang");
         map.put("age",32);
         System.out.println(map.get("name") + "+++++++++" + map.get("age"));
-        redisService.lPushAll("redis:list:test1",100L,map);
+        redisService.lPushAll("redis:list:test3",map);
     }
 
     @Test

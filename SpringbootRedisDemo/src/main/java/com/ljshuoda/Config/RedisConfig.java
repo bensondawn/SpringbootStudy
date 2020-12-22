@@ -54,7 +54,11 @@ public class RedisConfig {
     }
 
     /**
-     * 缓存管理器
+     * 缓存管理器，配合@Cacheable、@CachePut、@CacheEvict使用。
+     * 1、@Cacheable使用该注解的方法当缓存存在时，会从缓存中获取数据而不执行方法，当缓存不存在时，
+     *   会执行方法并把返回结果存入缓存中。一般使用在查询方法上。
+     * 2、@CachePut使用该注解的方法每次执行时都会把返回结果存入缓存中。一般使用在新增方法上。
+     * 3、@CacheEvict使用该注解的方法执行时会清空指定的缓存。一般使用在更新或删除方法上。
      * @param redisConnectionFactory
      * @return
      */
@@ -64,7 +68,8 @@ public class RedisConfig {
         RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory);
         //设置Redis缓存有效期为1天
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer())).entryTtl(Duration.ofSeconds(10));
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer()))
+                .entryTtl(Duration.ofSeconds(10L));
         return new RedisCacheManager(redisCacheWriter, redisCacheConfiguration);
     }
 

@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 
+// Redis key命名规范：业务模块名:业务逻辑含义:其它:value类型
+// 命名中只能出现小写字母、数字、英文点号(.)、英文半角冒号(:)。
+// 同一业务逻辑含义的单词之间使用英文半角点号(.)分割。
 @CrossOrigin
 @RestController
 @RequestMapping("/redis")
@@ -57,9 +60,9 @@ public class RedisTemplateController {
         HashMap<String,Object> map1 = (HashMap<String, Object>) obj1;
         map1.put("name","binbin");
         map1.put("age",21);
-        Long timeout = redisService.getExpire("redis:list:test");
-        redisService.lRemove("redis:list:test",0,map);
-        redisService.lPush("redis:list:test",map1,timeout);
+//        Long timeout = redisService.getExpire("redis:list:test");
+//        redisService.lRemove("redis:list:test",0,map);
+//        redisService.lPush("redis:list:test",map1,timeout);
 
         len = redisService.lSize("redis:list:test");
         System.out.println("list size:" + len);
