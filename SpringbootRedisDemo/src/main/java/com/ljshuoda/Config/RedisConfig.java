@@ -21,53 +21,51 @@ public class RedisConfig {
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        // Json序列号器
+        RedisSerializer<Object> serializer = redisSerializer();
         // 创建一个模板类
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
-        // 创建String序列化器
-        RedisSerializer<String> redisSerializer = new StringRedisSerializer();
-        // 创建Json序列化器
-        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-        //json转对象类，不设置默认的会将json转成hashmap
-        ObjectMapper om = new ObjectMapper();
-        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        jackson2JsonRedisSerializer.setObjectMapper(om);
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         // 将redis连接工厂设置到模板类中
-        template.setConnectionFactory(redisConnectionFactory);
-        //key序列化方式
-        template.setKeySerializer(redisSerializer);
-        //value序列化
-        template.setValueSerializer(jackson2JsonRedisSerializer);
-        //key hashmap序列化
-        template.setHashKeySerializer(redisSerializer);
-        //value hashmap序列化
-        template.setHashValueSerializer(jackson2JsonRedisSerializer);
-        return template;
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
+        //配置key String序列化器
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        //配置value序列化器
+        redisTemplate.setValueSerializer(serializer);
+        //配置hash key String序列化器
+        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+        //配置hash value 序列化器
+        redisTemplate.setHashValueSerializer(serializer);
+        return redisTemplate;
     }
 
     /**
-     * 目前的理解就是应用在@CachePut,@Cacheable,@CacheEvict中的管理方式。
-     * 该种方式是管理注解缓存的管理器；
-     * 两种方式生成注解缓存的管理器，这时一种自定义的方式;
-     * 另一种是在yaml中配置redis.cache,Springboot自动生成管理器；
+     * 序列化器
+     * @return
+     */
+    @Bean
+    public RedisSerializer<Object> redisSerializer() {
+        //创建JSON序列化器
+        Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        serializer.setObjectMapper(objectMapper);
+        return serializer;
+    }
+
+    /**
+     * 缓存管理器
      * @param redisConnectionFactory
      * @return
      */
     @Bean
     public RedisCacheManager redisCacheManager(RedisConnectionFactory redisConnectionFactory){
         // Redis加锁的写入器
-        RedisCacheWriter writer = RedisCacheWriter.lockingRedisCacheWriter(redisConnectionFactory);
-        // 启动Redis缓存的默认设置
-        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();
-        // 设置JDK序列化器
-        config = config.serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new JdkSerializationRedisSerializer()));
-        // 禁用前缀
-//        config = config.disableKeyPrefix();
-        // 设置超时自动清空
-        config = config.entryTtl(Duration.ofSeconds(10));
-        // 创建Redis缓存管理器
-        RedisCacheManager redisCacheManager = new RedisCacheManager(writer,config);
-        return redisCacheManager;
+        RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory);
+        //设置Redis缓存有效期为1天
+        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer())).entryTtl(Duration.ofSeconds(10));
+        return new RedisCacheManager(redisCacheWriter, redisCacheConfiguration);
     }
 
 }

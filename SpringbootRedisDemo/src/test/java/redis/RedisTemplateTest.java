@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
 import java.util.Set;
 
 @SpringBootApplication(scanBasePackages = {
@@ -29,25 +30,27 @@ public class RedisTemplateTest {
 
     @Test
     public void test1(){
-//        redisService.set("key1", "value1");
-        System.out.println(redisService.get("key1"));
-
-        Set<String> keys = redisTemplate.keys("*");
-        for (String key : keys){
-            System.out.println(key);
-        }
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("name","zhang");
+        map.put("age",32);
+        System.out.println(map.get("name") + "+++++++++" + map.get("age"));
+        redisService.lPushAll("redis:list:test1",100L,map);
     }
 
     @Test
     public void test2(){
 
-//        redisService.setListLeft("listkey1","a1",600L, TimeUnit.SECONDS);
-//        redisService.setListLeft("listkey1","a2",600L, TimeUnit.SECONDS);
-//        redisService.setListLeft("listkey1","a3",600L, TimeUnit.SECONDS);
-//        redisService.setListLeft("listkey1","a4",600L, TimeUnit.SECONDS);
+        Long ll = redisService.getExpire("redis:list:test1");
+        System.out.println(ll);
 
-//        System.out.println("resultList1:"+redisService.getListLeft("listkey1"));
-        System.out.println("Last element:"+redisService.getElement("listkey1",0));
+        HashMap<String,Object> map = new HashMap<>();
+
+        long len = redisService.lSize("redis:list:test");
+        if (len > 0){
+            for (int i=0;i<len;i++){
+                redisService.lRemove("redis:list:test",i,map);
+            }
+        }
     }
 }
 

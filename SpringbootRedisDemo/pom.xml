@@ -9,8 +9,14 @@
     <version>0.1.0</version>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
+        <mysql-connector-java.version>8.0.22</mysql-connector-java.version>
+        <mybatis-spring-boot-starter.version>2.0.0</mybatis-spring-boot-starter.version>
+        <alibaba-druid.version>1.1.10</alibaba-druid.version>
+        <lombok.version>1.18.16</lombok.version>
+        <google-guava.version>23.0</google-guava.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <seata.version>1.4.0</seata.version>
         <skipTests>true</skipTests>
     </properties>
 
@@ -39,6 +45,33 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <!--mybatis-->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis-spring-boot-starter.version}</version>
+        </dependency>
+
+        <!-- MySQL JDBC Driver 依赖 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java.version}</version>
+        </dependency>
+
+        <!-- Spring Boot JDBC 数据源依赖，采用 Druid 数据源 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${alibaba-druid.version}</version>
         </dependency>
 
         <!-- FastJson 依赖 -->
