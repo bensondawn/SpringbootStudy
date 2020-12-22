@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @CrossOrigin
@@ -44,6 +46,19 @@ public class RedisTemplateController {
         System.out.println(redisService.get("key2"));
 
         return "success";
+    }
+
+    @RequestMapping("/get-list")
+    public void listTest(){
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("name","zhang");
+        map.put("age",32);
+        System.out.println(map.get("name") + "+++++++++" + map.get("age"));
+        redisService.setListLeft("list-test",map,10,TimeUnit.SECONDS);
+
+        long len = redisService.lSize("list-test");
+        System.out.println("list size:" + len);
+//        redisService.getElement("list-test",1);
     }
 
 }

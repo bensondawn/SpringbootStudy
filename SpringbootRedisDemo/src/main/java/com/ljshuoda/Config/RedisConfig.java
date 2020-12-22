@@ -62,7 +62,7 @@ public class RedisConfig {
         // 设置JDK序列化器
         config = config.serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new JdkSerializationRedisSerializer()));
         // 禁用前缀
-        config = config.disableKeyPrefix();
+//        config = config.disableKeyPrefix();
         // 设置超时自动清空
         config = config.entryTtl(Duration.ofSeconds(10));
         // 创建Redis缓存管理器

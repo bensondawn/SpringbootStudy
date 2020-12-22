@@ -1,3 +1,5 @@
+package redis;
+
 import com.ljshuoda.Service.RedisServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,7 +10,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication(scanBasePackages = {
         "com.ljshuoda"

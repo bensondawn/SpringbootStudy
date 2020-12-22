@@ -6,6 +6,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -24,6 +25,16 @@ public class RedisServiceImpl implements RedisService {
     public Object get(String key) {
         ValueOperations<String,Object> vo = redisTemplate.opsForValue();
         return vo.get(key);
+    }
+
+    @Override
+    public List<Object> lRange(String key, long start, long end) {
+        return redisTemplate.opsForList().range(key, start, end);
+    }
+
+    @Override
+    public Long lSize(String key) {
+        return redisTemplate.opsForList().size(key);
     }
 
     @Override
