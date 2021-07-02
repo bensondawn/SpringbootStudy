@@ -30,8 +30,8 @@
 
         <!-- 连接属性 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/gbiap?useUnicode=true&amp;characterEncoding=UTF-8"
-                        userId="root" password="111111" />
+                        connectionURL="jdbc:mysql://172.16.1.31:3307/iot?useUnicode=true&amp;characterEncoding=UTF-8"
+                        userId="root" password="iot@123" />
 
         <!--实体生成路径 -->
         <javaModelGenerator targetPackage="com.benson.mybatis.entity"
@@ -48,10 +48,9 @@
         <javaClientGenerator targetPackage="com.benson.mybatis.mapper"
                              targetProject="src/main/java" type="XMLMAPPER" />
 
-        <!-- 生成那些表，tableName对应数据库表，domainObjectName对应实体类名 -->
-
-        <table tableName="user" domainObjectName="User"
-               enableCountByExample="true"  enableDeleteByExample="true" enableSelectByExample="true"  enableUpdateByExample="true">
+        <!-- 生成哪些表，tableName对应数据库表，domainObjectName对应实体类名 -->
+        <table tableName="alarm_ensure_msg" domainObjectName="AlarmEnsureMsg"
+               enableCountByExample="false"  enableDeleteByExample="false" enableSelectByExample="false"  enableUpdateByExample="false">
         </table>
     </context>
 </generatorConfiguration>

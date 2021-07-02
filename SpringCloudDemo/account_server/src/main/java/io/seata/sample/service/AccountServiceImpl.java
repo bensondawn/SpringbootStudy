@@ -1,7 +1,6 @@
 package io.seata.sample.service;
 
 import io.seata.sample.dao.AccountDao;
-import io.seata.sample.feign.OrderApi;
 import java.math.BigDecimal;
 
 import io.seata.spring.annotation.GlobalLock;

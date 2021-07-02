@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.benson.mybatis.mapper.AlarmEnsureMsgMapper">
+  <resultMap id="BaseResultMap" type="com.benson.mybatis.entity.AlarmEnsureMsg">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="area_resp_msg" jdbcType="VARCHAR" property="areaRespMsg" />
+    <result column="workshop_resp_msg" jdbcType="VARCHAR" property="workshopRespMsg" />
+    <result column="section_resp_msg" jdbcType="VARCHAR" property="sectionRespMsg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, area_resp_msg, workshop_resp_msg, section_resp_msg
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from alarm_ensure_msg
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from alarm_ensure_msg
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.benson.mybatis.entity.AlarmEnsureMsg">
+    insert into alarm_ensure_msg (id, area_resp_msg, workshop_resp_msg, 
+      section_resp_msg)
+    values (#{id,jdbcType=INTEGER}, #{areaRespMsg,jdbcType=VARCHAR}, #{workshopRespMsg,jdbcType=VARCHAR}, 
+      #{sectionRespMsg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.benson.mybatis.entity.AlarmEnsureMsg">
+    insert into alarm_ensure_msg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="areaRespMsg != null">
+        area_resp_msg,
+      </if>
+      <if test="workshopRespMsg != null">
+        workshop_resp_msg,
+      </if>
+      <if test="sectionRespMsg != null">
+        section_resp_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="areaRespMsg != null">
+        #{areaRespMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="workshopRespMsg != null">
+        #{workshopRespMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionRespMsg != null">
+        #{sectionRespMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.benson.mybatis.entity.AlarmEnsureMsg">
+    update alarm_ensure_msg
+    <set>
+      <if test="areaRespMsg != null">
+        area_resp_msg = #{areaRespMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="workshopRespMsg != null">
+        workshop_resp_msg = #{workshopRespMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionRespMsg != null">
+        section_resp_msg = #{sectionRespMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.benson.mybatis.entity.AlarmEnsureMsg">
+    update alarm_ensure_msg
+    set area_resp_msg = #{areaRespMsg,jdbcType=VARCHAR},
+      workshop_resp_msg = #{workshopRespMsg,jdbcType=VARCHAR},
+      section_resp_msg = #{sectionRespMsg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

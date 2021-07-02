@@ -6,3 +6,6 @@ server:
 spring:
   application:
     name: config-client
+
+logging:
+  config: classpath:logback-spring.xml

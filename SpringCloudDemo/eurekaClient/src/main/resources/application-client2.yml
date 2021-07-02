@@ -8,6 +8,9 @@ spring:
     # 设置应用名称，默认配置下，应用名称用于生成 Eureka Client ID
     name: eureka-client
 
+logging:
+  config: classpath:logback-spring.xml
+
 eureka:
   instance:
     hostname: localhost

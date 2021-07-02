@@ -107,10 +107,20 @@ public class ElasticsearchUtil {
     /**
      * @Description: 判断inde下指定type是否存在
      */
-    public boolean isTypeExist(String index, String type) {
+    public static boolean isTypeExist(String index, String type) {
         return isIndexExist(index)
                 ? client.admin().indices().prepareTypesExists(index).setTypes(type).execute().actionGet().isExists()
                 : false;
+    }
+
+    public static boolean isDocExists(String index, String type, String id){
+        GetResponse response = client.prepareGet(index,type,id).get();
+        if (response.isExists())
+            return true;
+        else{
+            System.out.println("doc is not exists!");
+            return false;
+        }
     }
 
     /**

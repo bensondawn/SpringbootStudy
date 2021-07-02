@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 public class LimitFilter extends ZuulFilter {
 
-    // 创建限制每秒最高的请求数。此处是并发变成，各个线程需共享变量，所以定义为static volatile
-    public static volatile RateLimiter rateLimiter = RateLimiter.create(10.0);
+    // 创建限制每秒最高的请求数。此处是并发编程，各个线程需共享变量，所以定义为static volatile
+    private static volatile RateLimiter rateLimiter = RateLimiter.create(10.0);
 
     public LimitFilter(){
         super();
