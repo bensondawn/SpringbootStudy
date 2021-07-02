@@ -1,9 +1,17 @@
+
+import com.alibaba.fastjson.JSON;
 import com.jiaxun.BeanDemo;
+import com.jiaxun.Utils.BeanMapUtils;
 import com.jiaxun.Utils.MD5Utils;
+import com.jiaxun.model.Student;
+import net.sf.json.util.JSONUtils;
+import net.sf.json.xml.XMLSerializer;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +20,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = BeanDemo.class)
@@ -86,6 +97,8 @@ public class TestXML {
         int picCode = picPath.hashCode() & Integer.MAX_VALUE;
         int n = picCode % 6;
         System.out.println("!!!!!!!!" + picCode + "**************" + n);
+        String lastStr = picPath.substring(picPath.indexOf(".") + 1);
+        System.out.println(lastStr);
     }
 
     @Test
@@ -154,5 +167,109 @@ public class TestXML {
             System.out.println(bigInteger.mod(a).intValue());
 //            System.out.println(bigInteger.remainder(a).intValue());
         }
+    }
+
+    @Test
+    public void xml2json() throws JSONException {
+
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                "<contacts version=\"0\" xmlns=\"urn:ietf:params:xml:ns:contacts\">\n" +
+                "  <contactsList contactsID=\"2\" contactsName=\"济南电务段\">\n" +
+                "    <dept deptid=\"0\" deptName=\"济南电务段\" pos=\"58048\">\n" +
+                "      <dept deptid=\"3\" deptName=\"1376699209079341056\" superiorDept=\"0\" pos=\"0\">\n" +
+                "        <user userID=\"132\">\n" +
+                "          <deptID>3</deptID>\n" +
+                "          <pos>0</pos>\n" +
+                "          <channelid>24000000001327002001</channelid>\n" +
+                "          <channelName>101A</channelName>\n" +
+                "          <callNum>24000000001327002001</callNum>\n" +
+                "          <cooperateNum/>\n" +
+                "          <ptzLevel>254</ptzLevel>\n" +
+                "          <talkLevel>254</talkLevel>\n" +
+                "          <restart>0</restart>\n" +
+                "          <modify>0</modify>\n" +
+                "          <preset>0</preset>\n" +
+                "          <status>offline</status>\n" +
+                "        </user>\n" +
+                "      </dept>\n" +
+                "      <dept deptid=\"4\" deptName=\"1376725556606550016\" superiorDept=\"0\" pos=\"1\">\n" +
+                "        <user userID=\"359\">\n" +
+                "          <deptID>4</deptID>\n" +
+                "          <pos>0</pos>\n" +
+                "          <channelid>24000000001327008152</channelid>\n" +
+                "          <channelName>10J1</channelName>\n" +
+                "          <callNum>24000000001327008152</callNum>\n" +
+                "          <cooperateNum/>\n" +
+                "          <ptzLevel>254</ptzLevel>\n" +
+                "          <talkLevel>254</talkLevel>\n" +
+                "          <restart>0</restart>\n" +
+                "          <modify>0</modify>\n" +
+                "          <preset>0</preset>\n" +
+                "          <status>online</status>\n" +
+                "        </user>\n" +
+                "      </dept>\n" +
+                "    </dept>\n" +
+                "  </contactsList>\n" +
+                "</contacts>";
+
+//        Object xmlObject = XsteamUtil.toBean(Contacts.class, xml);
+//        System.out.println(JSON.toJSONString(xmlObject));
+
+        XMLSerializer xmlSerializer = new XMLSerializer();
+        net.sf.json.JSON json = xmlSerializer.read(xml);
+        String jsonStr = json.toString().replace("@","");
+        org.json.JSONObject jsonObject = new JSONObject(jsonStr);
+        String jsonPrettyPrintString = jsonObject.toString(4);
+        // 输出格式化后的json
+        System.out.println(jsonPrettyPrintString);
+
+//        Document document;
+//        try {
+//            document = DocumentHelper.parseText(xmlStr);
+//            org.json.JSONObject xmlJSONObj = org.json.XML.toJSONObject(document.asXML());
+//            //设置缩进
+//            String jsonPrettyPrintString = xmlJSONObj.toString(4);
+//            //输出格式化后的json
+//            System.out.println(jsonPrettyPrintString);
+//        } catch (DocumentException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    @Test
+    public void setTest(){
+        Set<String> sb = new HashSet<>();
+        sb.add("aaa");
+        sb.add("bbb");
+        sb.add("ccc");
+        if (sb.contains("ccc")){
+            System.out.println("1111111111111");
+        }
+
+        Student student = new Student();
+        student.setName("tinghe");
+        student.setAge(11);
+        student.setText("hello world");
+        student.setUserId("10000");
+
+        try {
+            Map<String,Object> stuMap = BeanMapUtils.bean2map(student);
+            System.out.println(JSON.toJSONString(stuMap));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String stuStr = "{\n" +
+                "    \"id\":\"001\",\n" +
+                "    \"name\":\"张三哈\",\n" +
+                "    \"sex\":\"男\",\n" +
+                "    \"age\":15,\n" +
+                "    \"score\":99,\n" +
+                "    \"role\":\"班长\"\n" +
+                "}";
+
+        Student student1 = JSON.parseObject(stuStr, Student.class);
+
+        System.out.println(student1.getName() + ":" + student1.getAge());
     }
 }
