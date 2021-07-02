@@ -1,5 +1,6 @@
 package com.benson.elasticsearch.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.benson.elasticsearch.model.Employee;
 import com.benson.elasticsearch.model.EsPage;
@@ -57,14 +58,15 @@ public class EsController {
      * @return
      */
     @RequestMapping("/insertJson")
-    public String insertJson() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", "001");
-        jsonObject.put("name", "张三");
-        jsonObject.put("age", 11);
-        jsonObject.put("score", 99);
-        jsonObject.put("role", "班长");
-        String id = ElasticsearchUtil.addData(jsonObject, indexName, esType, jsonObject.getString("id"));
+    public String insertJson(@RequestBody Employee employee) {
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("id", "001");
+//        jsonObject.put("name", "张三");
+//        jsonObject.put("sex", "男");
+//        jsonObject.put("age", 11);
+//        jsonObject.put("score", 99);
+//        jsonObject.put("role", "班长");
+        String id = ElasticsearchUtil.addData(JSONObject.parseObject(JSON.toJSONString(employee)), indexName, esType, employee.getId());
         return id;
     }
 
@@ -101,17 +103,12 @@ public class EsController {
      * @return
      */
     @RequestMapping("/update")
-    public String update(String id) {
-        if (StringUtils.isNotBlank(id)) {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("id", id);
-            jsonObject.put("name", "王五");
-            jsonObject.put("sex", "男");
-            jsonObject.put("age",12 );
-            ElasticsearchUtil.updateDataById(jsonObject, indexName, esType, id);
-            return "id=" + id;
+    public String update(@RequestBody Employee employee) {
+        if (ElasticsearchUtil.isDocExists(indexName,esType,employee.getId())){
+            ElasticsearchUtil.updateDataById(JSONObject.parseObject(JSON.toJSONString(employee)), indexName, esType, employee.getId());
+            return "id=" + employee.getId();
         } else {
-            return "id为空";
+            return "id不存在";
         }
     }
 
